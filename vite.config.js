@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/', // 使用根路径
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -13,12 +14,11 @@ export default defineConfig({
         manualChunks: {
           'pdf.worker': ['pdfjs-dist/build/pdf.worker.min']
         }
+      },
+      input: {
+        main: resolve(__dirname, 'index.html')
       }
     }
   },
-  publicDir: 'public', // 指定静态资源目录
-  server: {
-    port: 3000,
-    host: true
-  }
+  publicDir: 'public'
 }) 
