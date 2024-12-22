@@ -10,5 +10,9 @@ app.config.errorHandler = (err, vm, info) => {
   // 可以添加错误上报逻辑
 }
 
+router.onError((error) => {
+  console.error('路由错误:', error)
+})
+
 app.use(router)
 app.mount('#app') 

@@ -13,17 +13,20 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    ssr: false,
     sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
-          'pdf.worker': ['pdfjs-dist/build/pdf.worker.min']
+          'vendor': ['vue', 'vue-router'],
+          'pdf': ['pdfjs-dist']
         }
-      },
-      input: {
-        main: resolve(__dirname, 'index.html')
       }
     }
   },
-  publicDir: 'public'
+  server: {
+    port: 3000,
+    strictPort: false,
+    open: true
+  }
 }) 
