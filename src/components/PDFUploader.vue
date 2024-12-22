@@ -61,8 +61,12 @@ const processPDFFile = async (file) => {
     loading.value = true
     error.value = ''
     
-    if (file.size > 10 * 1024 * 1024) {
+    if (file.size > import.meta.env.VITE_MAX_PDF_SIZE) {
       throw new Error('文件大小不能超过10MB')
+    }
+    
+    if (file.type !== import.meta.env.VITE_SUPPORTED_PDF_TYPES) {
+      throw new Error('只支持PDF文件格式')
     }
     
     const questions = await parsePDF(file)

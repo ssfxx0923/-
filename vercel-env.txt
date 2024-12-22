@@ -1,0 +1,15 @@
+# 应用标题
+VITE_APP_TITLE=PDF题库练习系统
+
+# PDF文件配置
+VITE_MAX_PDF_SIZE=10485760
+VITE_SUPPORTED_PDF_TYPES=application/pdf
+
+# 存储前缀
+VITE_STORAGE_PREFIX=pdf_practice_
+
+# Node版本
+NODE_VERSION=16
+
+# 构建配置
+NPM_FLAGS=--legacy-peer-deps 

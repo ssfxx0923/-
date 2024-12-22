@@ -1,6 +1,8 @@
+const prefix = import.meta.env.VITE_STORAGE_PREFIX
+
 export const setStorageItem = (key, value) => {
   try {
-    localStorage.setItem(key, JSON.stringify(value))
+    localStorage.setItem(prefix + key, JSON.stringify(value))
   } catch (error) {
     console.error('存储错误:', error)
   }
@@ -8,7 +10,7 @@ export const setStorageItem = (key, value) => {
 
 export const getStorageItem = (key) => {
   try {
-    const item = localStorage.getItem(key)
+    const item = localStorage.getItem(prefix + key)
     return item ? JSON.parse(item) : null
   } catch (error) {
     console.error('读取存储错误:', error)
