@@ -42,8 +42,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeRouteLeave } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import QuestionDisplay from '../components/QuestionDisplay.vue'
 import { getStorageItem, setStorageItem } from '../utils/storage'
 
@@ -118,16 +118,11 @@ const finishPractice = () => {
   router.push('/result')
 }
 
-onBeforeRouteLeave((to, from, next) => {
+onBeforeRouteLeave((to, from) => {
   if (to.path !== '/result' && answers.value.length > 0) {
-    if (window.confirm('确定要退出吗？当前进度将会保存')) {
-      next()
-    } else {
-      next(false)
-    }
-  } else {
-    next()
+    return window.confirm('确定要退出吗？当前进度将会保存')
   }
+  return true
 })
 </script>
 
